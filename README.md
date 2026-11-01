@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 5 of 7 of the study phase complete (Target & features). Modeling starts after the study phase.
+**Status:** stage 6 of 7 of the study phase complete (Preprocessing plan). Modeling starts after the study phase.
 
 ## Problem statement
 
@@ -37,6 +37,14 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 
 15 inputs kept, `duration` dropped. Groups: client profile (age, job, marital, education, default, balance, housing, loan), current contact (contact, day, month, campaign), campaign history (pdays, previous, poutcome). Details: [docs/02_target_and_features.md](docs/02_target_and_features.md)
 
+## Preprocessing plan
+
+- Yeo-Johnson for `balance`; log1p or bins for `campaign`; bins for `previous` and `pdays`
+- `StandardScaler` for linear / distance models; one-hot for nominal columns
+- Stratified split, `Pipeline` + `ColumnTransformer`, imbalance handled with class weights / oversampling / SMOTENC, threshold tuning
+
+Details: [docs/03_preprocessing_plan.md](docs/03_preprocessing_plan.md)
+
 ## Repository structure
 
 ```text
@@ -46,7 +54,8 @@ bank-marketing-term-deposit/
 │   └── README.md
 ├── docs/
 │   ├── 01_problem_statement.md
-│   └── 02_target_and_features.md
+│   ├── 02_target_and_features.md
+│   └── 03_preprocessing_plan.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
 │   └── 02_eda.ipynb
@@ -58,13 +67,14 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 6. Preprocessing plan | 2026-11-01 | `docs/03_preprocessing_plan.md`: scaling, transforms, binning, encoding, imbalance handling |
 | 5. Target & features | 2026-11-01 | `docs/02_target_and_features.md`: target choice, feature decisions, `duration` leakage |
 | 4. EDA | 2026-11-01 | `notebooks/02_eda.ipynb`: target balance, distributions, rates by feature, time order, correlations, leakage check |
 | 3. Data overview | 2026-11-01 | `notebooks/01_data_overview.ipynb`: data dictionary, types, hidden missing values, duplicates |
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Preprocessing plan
+**Next:** Course fit & limitations
 
 ## How to run
 
