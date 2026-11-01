@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 6 of 7 of the study phase complete (Preprocessing plan). Modeling starts after the study phase.
+**Status:** stage 7 of 7 of the study phase complete (Course fit & limitations). Modeling starts after the study phase.
 
 ## Problem statement
 
@@ -45,6 +45,10 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 
 Details: [docs/03_preprocessing_plan.md](docs/03_preprocessing_plan.md)
 
+## Scope and limitations
+
+All methods come from the course (supervised ML lessons 05–17). Main limitations: 81.7% of clients have no campaign history, the rows drift over time (3.0% → 47.1% yes rate), and there is no cost data. Details: [docs/04_course_fit_and_limitations.md](docs/04_course_fit_and_limitations.md)
+
 ## Repository structure
 
 ```text
@@ -55,7 +59,8 @@ bank-marketing-term-deposit/
 ├── docs/
 │   ├── 01_problem_statement.md
 │   ├── 02_target_and_features.md
-│   └── 03_preprocessing_plan.md
+│   ├── 03_preprocessing_plan.md
+│   └── 04_course_fit_and_limitations.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
 │   └── 02_eda.ipynb
@@ -67,6 +72,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 7. Course fit & limitations | 2026-11-01 | `docs/04_course_fit_and_limitations.md`: scope vs the course, limitations, open questions |
 | 6. Preprocessing plan | 2026-11-01 | `docs/03_preprocessing_plan.md`: scaling, transforms, binning, encoding, imbalance handling |
 | 5. Target & features | 2026-11-01 | `docs/02_target_and_features.md`: target choice, feature decisions, `duration` leakage |
 | 4. EDA | 2026-11-01 | `notebooks/02_eda.ipynb`: target balance, distributions, rates by feature, time order, correlations, leakage check |
@@ -74,7 +80,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Course fit & limitations
+**Next:** modeling (baseline, Logistic Regression, tree ensembles), then evaluation and presentation.
 
 ## How to run
 
