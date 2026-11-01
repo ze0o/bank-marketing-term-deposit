@@ -1,0 +1,18 @@
+{
+  "decision_tree": {
+    "model__max_depth": 10,
+    "model__min_samples_leaf": 20
+  },
+  "random_forest": {
+    "model__n_estimators": 400,
+    "model__min_samples_leaf": 10,
+    "model__max_features": "sqrt",
+    "model__max_depth": 20
+  },
+  "gradient_boosting": {
+    "model__subsample": 0.8,
+    "model__n_estimators": 300,
+    "model__max_depth": 4,
+    "model__learning_rate": 0.05
+  }
+}

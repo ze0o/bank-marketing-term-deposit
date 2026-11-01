@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 9 of 14 complete (Logistic Regression).
+**Status:** stage 10 of 14 complete (Tree models).
 
 ## Problem statement
 
@@ -38,6 +38,9 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Baseline (always no) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.883 |
 | Logistic Regression | 0.50 | 0.779 | 0.713 | 0.634 | 0.288 | 0.396 | 0.773 |
+| Decision Tree | 0.50 | 0.778 | 0.721 | 0.599 | 0.336 | 0.430 | 0.814 |
+| Random Forest | 0.50 | 0.804 | 0.742 | 0.632 | 0.360 | 0.459 | 0.825 |
+| Gradient Boosting | 0.50 | 0.806 | 0.618 | 0.253 | 0.660 | 0.366 | 0.897 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 
@@ -57,11 +60,13 @@ bank-marketing-term-deposit/
 │   ├── 01_data_overview.ipynb
 │   ├── 02_eda.ipynb
 │   ├── 03_preprocessing_and_baseline.ipynb
-│   └── 04_logistic_regression.ipynb
+│   ├── 04_logistic_regression.ipynb
+│   └── 05_random_forest_gradient_boosting.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
-│   └── lr_odds_ratios.csv
+│   ├── lr_odds_ratios.csv
+│   └── best_params.json
 ├── src/
 │   └── prep.py
 ├── requirements.txt
@@ -72,6 +77,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 10. Tree models | 2026-11-01 | `notebooks/05_random_forest_gradient_boosting.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters |
 | 9. Logistic Regression | 2026-11-01 | `notebooks/04_logistic_regression.ipynb`: class weights, GridSearchCV on C, odds ratios |
 | 8. Preprocessing pipeline & baseline | 2026-11-01 | `src/prep.py` (shared split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline |
 | 7. Course fit & limitations | 2026-11-01 | `docs/04_course_fit_and_limitations.md`: scope vs the course, limitations, open questions |
@@ -82,7 +88,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Tree models
+**Next:** Imbalance comparison
 
 ## How to run
 
