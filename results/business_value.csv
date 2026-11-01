@@ -1,0 +1,5 @@
+call_top_%,calls,GB_subscribers_reached_%,GB_yes_rate_in_called_%,LR_subscribers_reached_%,LR_yes_rate_in_called_%,random_calls_reach_%
+10,904,45.1,52.8,42.3,49.6,10
+20,1809,62.4,36.5,58.4,34.2,20
+30,2713,71.6,27.9,67.3,26.2,30
+50,4522,83.4,19.5,81.5,19.1,50

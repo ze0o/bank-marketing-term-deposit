@@ -2,7 +2,10 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 11 of 14 complete (Imbalance comparison).
+**Status:** stage 12 of 14 complete (Threshold & business value).
+
+> **Headline result:** ranking clients with the Gradient Boosting model, calling only the **top 30%** reaches **72% of all subscribers** (70% fewer calls), and the top 10% converts at **52.8%**, 4.5× the 11.7% average (test set).
+
 
 ## Problem statement
 
@@ -41,6 +44,7 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | Decision Tree | 0.50 | 0.778 | 0.721 | 0.599 | 0.336 | 0.430 | 0.814 |
 | Random Forest | 0.50 | 0.804 | 0.742 | 0.632 | 0.360 | 0.459 | 0.825 |
 | Gradient Boosting | 0.50 | 0.806 | 0.618 | 0.253 | 0.660 | 0.366 | 0.897 |
+| Gradient Boosting (tuned threshold) | 0.16 | 0.806 | 0.732 | 0.556 | 0.443 | 0.493 | 0.866 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 
@@ -62,13 +66,15 @@ bank-marketing-term-deposit/
 │   ├── 03_preprocessing_and_baseline.ipynb
 │   ├── 04_logistic_regression.ipynb
 │   ├── 05_random_forest_gradient_boosting.ipynb
-│   └── 06_imbalance_comparison.ipynb
+│   ├── 06_imbalance_comparison.ipynb
+│   └── 07_threshold_and_business_value.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
 │   ├── lr_odds_ratios.csv
 │   ├── best_params.json
-│   └── imbalance_cv.csv
+│   ├── imbalance_cv.csv
+│   └── business_value.csv
 ├── src/
 │   └── prep.py
 ├── requirements.txt
@@ -79,6 +85,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 12. Threshold & business value | 2026-11-01 | `notebooks/07_threshold_and_business_value.ipynb`: threshold chosen on training data, share of subscribers reached by calling the top-scored clients |
 | 11. Imbalance comparison | 2026-11-01 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTENC |
 | 10. Tree models | 2026-11-01 | `notebooks/05_random_forest_gradient_boosting.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters |
 | 9. Logistic Regression | 2026-11-01 | `notebooks/04_logistic_regression.ipynb`: class weights, GridSearchCV on C, odds ratios |
@@ -91,7 +98,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Threshold & business value
+**Next:** Explainability
 
 ## How to run
 
