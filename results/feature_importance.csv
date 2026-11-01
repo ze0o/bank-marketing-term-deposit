@@ -1,0 +1,16 @@
+,importance
+poutcome,0.2998
+month,0.2184
+age,0.1017
+pdays,0.0801
+day,0.073
+balance,0.0582
+contact,0.0496
+housing,0.0337
+job,0.0225
+campaign,0.0203
+previous,0.014
+marital,0.0135
+education,0.0086
+loan,0.0047
+default,0.0019

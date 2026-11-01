@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 12 of 14 complete (Threshold & business value).
+**Status:** stage 13 of 14 complete (Explainability).
 
 > **Headline result:** ranking clients with the Gradient Boosting model, calling only the **top 30%** reaches **72% of all subscribers** (70% fewer calls), and the top 10% converts at **52.8%**, 4.5× the 11.7% average (test set).
 
@@ -67,14 +67,17 @@ bank-marketing-term-deposit/
 │   ├── 04_logistic_regression.ipynb
 │   ├── 05_random_forest_gradient_boosting.ipynb
 │   ├── 06_imbalance_comparison.ipynb
-│   └── 07_threshold_and_business_value.ipynb
+│   ├── 07_threshold_and_business_value.ipynb
+│   └── 08_explainability.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
 │   ├── lr_odds_ratios.csv
 │   ├── best_params.json
 │   ├── imbalance_cv.csv
-│   └── business_value.csv
+│   ├── business_value.csv
+│   ├── threshold.json
+│   └── feature_importance.csv
 ├── src/
 │   └── prep.py
 ├── requirements.txt
@@ -85,6 +88,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 13. Explainability | 2026-11-01 | `notebooks/08_explainability.ipynb`: feature importance, partial dependence, SHAP |
 | 12. Threshold & business value | 2026-11-01 | `notebooks/07_threshold_and_business_value.ipynb`: threshold chosen on training data, share of subscribers reached by calling the top-scored clients |
 | 11. Imbalance comparison | 2026-11-01 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTENC |
 | 10. Tree models | 2026-11-01 | `notebooks/05_random_forest_gradient_boosting.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters |
@@ -98,7 +102,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Explainability
+**Next:** Results & recommendations
 
 ## How to run
 
