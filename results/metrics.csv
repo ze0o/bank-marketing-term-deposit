@@ -1,0 +1,2 @@
+model,threshold,accuracy,balanced_accuracy,precision,recall,f1,roc_auc
+Baseline (always no),0.5,0.883,0.5,0.0,0.0,0.0,0.5

@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 7 of 7 of the study phase complete (Course fit & limitations). Modeling starts after the study phase.
+**Status:** stage 8 of 14 complete (Preprocessing pipeline & baseline).
 
 ## Problem statement
 
@@ -10,13 +10,13 @@ Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's p
 
 - **Type:** supervised binary classification
 - **Target:** `y` (yes = 1, no = 0)
-- **Metrics:** balanced accuracy, recall, precision, F1, ROC-AUC (accuracy alone is misleading: always predicting "no" scores 88.3%)
+- **Metrics:** ROC-AUC, balanced accuracy, recall, precision, F1 (accuracy alone is misleading: always predicting "no" scores 88.3%)
 
 Full details: [docs/01_problem_statement.md](docs/01_problem_statement.md)
 
 ## Dataset
 
-45,211 rows × 17 columns (7 numeric, 10 categorical), no nulls, no duplicates. Missing information is hidden as `unknown` and `pdays = -1`. Source: [UCI Bank Marketing](https://archive.ics.uci.edu/dataset/222/bank+marketing).
+45,211 rows × 17 columns (7 numeric, 10 categorical), no nulls, no duplicates. Missing information is hidden as `unknown` and `pdays = -1`. Source: [UCI Bank Marketing](https://archive.ics.uci.edu/dataset/222/bank+marketing). `duration` is dropped because it is only known after the call (leakage).
 
 ## Key EDA findings
 
@@ -29,25 +29,16 @@ Full details: [docs/01_problem_statement.md](docs/01_problem_statement.md)
 | May: share of calls / yes rate | 30.4% / 6.7% |
 | Never contacted before | 81.7% of clients |
 | Yes rate, oldest → newest tenth of the file | 3.0% → 47.1% |
-| `duration` correlation with target | 0.39, but only known after the call → dropped (leakage) |
 
 Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 
-## Features
+## Model results (test set)
 
-15 inputs kept, `duration` dropped. Groups: client profile (age, job, marital, education, default, balance, housing, loan), current contact (contact, day, month, campaign), campaign history (pdays, previous, poutcome). Details: [docs/02_target_and_features.md](docs/02_target_and_features.md)
+| model | threshold | roc auc | balanced accuracy | recall | precision | f1 | accuracy |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Baseline (always no) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.883 |
 
-## Preprocessing plan
-
-- Yeo-Johnson for `balance`; log1p or bins for `campaign`; bins for `previous` and `pdays`
-- `StandardScaler` for linear / distance models; one-hot for nominal columns
-- Stratified split, `Pipeline` + `ColumnTransformer`, imbalance handled with class weights / oversampling / SMOTENC, threshold tuning
-
-Details: [docs/03_preprocessing_plan.md](docs/03_preprocessing_plan.md)
-
-## Scope and limitations
-
-All methods come from the course (supervised ML lessons 05–17). Main limitations: 81.7% of clients have no campaign history, the rows drift over time (3.0% → 47.1% yes rate), and there is no cost data. Details: [docs/04_course_fit_and_limitations.md](docs/04_course_fit_and_limitations.md)
+ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 
 ## Repository structure
 
@@ -63,7 +54,12 @@ bank-marketing-term-deposit/
 │   └── 04_course_fit_and_limitations.md
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
-│   └── 02_eda.ipynb
+│   ├── 02_eda.ipynb
+│   └── 03_preprocessing_and_baseline.ipynb
+├── results/
+│   └── metrics.csv
+├── src/
+│   └── prep.py
 ├── requirements.txt
 └── README.md
 ```
@@ -72,6 +68,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 8. Preprocessing pipeline & baseline | 2026-11-01 | `src/prep.py` (shared split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline |
 | 7. Course fit & limitations | 2026-11-01 | `docs/04_course_fit_and_limitations.md`: scope vs the course, limitations, open questions |
 | 6. Preprocessing plan | 2026-11-01 | `docs/03_preprocessing_plan.md`: scaling, transforms, binning, encoding, imbalance handling |
 | 5. Target & features | 2026-11-01 | `docs/02_target_and_features.md`: target choice, feature decisions, `duration` leakage |
@@ -80,7 +77,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** modeling (baseline, Logistic Regression, tree ensembles), then evaluation and presentation.
+**Next:** Logistic Regression
 
 ## How to run
 
@@ -88,4 +85,6 @@ bank-marketing-term-deposit/
 pip install -r requirements.txt
 jupyter notebook notebooks/
 ```
+
+Run the notebooks in order: 03–08 share the split and preprocessing in `src/prep.py` and write their results to `results/`.
 
