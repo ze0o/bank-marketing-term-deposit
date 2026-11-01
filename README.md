@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 10 of 14 complete (Tree models).
+**Status:** stage 11 of 14 complete (Imbalance comparison).
 
 ## Problem statement
 
@@ -61,12 +61,14 @@ bank-marketing-term-deposit/
 │   ├── 02_eda.ipynb
 │   ├── 03_preprocessing_and_baseline.ipynb
 │   ├── 04_logistic_regression.ipynb
-│   └── 05_random_forest_gradient_boosting.ipynb
+│   ├── 05_random_forest_gradient_boosting.ipynb
+│   └── 06_imbalance_comparison.ipynb
 ├── results/
 │   ├── metrics.csv
 │   ├── test_probas.csv
 │   ├── lr_odds_ratios.csv
-│   └── best_params.json
+│   ├── best_params.json
+│   └── imbalance_cv.csv
 ├── src/
 │   └── prep.py
 ├── requirements.txt
@@ -77,6 +79,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 11. Imbalance comparison | 2026-11-01 | `notebooks/06_imbalance_comparison.ipynb`: no handling vs class weights vs RandomOverSampler vs SMOTENC |
 | 10. Tree models | 2026-11-01 | `notebooks/05_random_forest_gradient_boosting.ipynb`: Decision Tree, Random Forest, Gradient Boosting with tuned hyper-parameters |
 | 9. Logistic Regression | 2026-11-01 | `notebooks/04_logistic_regression.ipynb`: class weights, GridSearchCV on C, odds ratios |
 | 8. Preprocessing pipeline & baseline | 2026-11-01 | `src/prep.py` (shared split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline |
@@ -88,7 +91,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Imbalance comparison
+**Next:** Threshold & business value
 
 ## How to run
 
