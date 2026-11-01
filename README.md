@@ -2,7 +2,7 @@
 
 Capstone project (General Assembly Data Science, Bahrain). A Portuguese bank's phone campaigns reach thousands of clients, but only **11.7%** subscribe to a term deposit. This project builds a model that scores clients **before** they are called, so the bank can call the likeliest subscribers first.
 
-**Status:** stage 8 of 14 complete (Preprocessing pipeline & baseline).
+**Status:** stage 9 of 14 complete (Logistic Regression).
 
 ## Problem statement
 
@@ -37,6 +37,7 @@ Details: [notebooks/02_eda.ipynb](notebooks/02_eda.ipynb)
 | model | threshold | roc auc | balanced accuracy | recall | precision | f1 | accuracy |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Baseline (always no) | 0.50 | 0.500 | 0.500 | 0.000 | 0.000 | 0.000 | 0.883 |
+| Logistic Regression | 0.50 | 0.779 | 0.713 | 0.634 | 0.288 | 0.396 | 0.773 |
 
 ROC-AUC measures ranking quality and is the main comparison metric; the others depend on the threshold.
 
@@ -55,9 +56,12 @@ bank-marketing-term-deposit/
 ├── notebooks/
 │   ├── 01_data_overview.ipynb
 │   ├── 02_eda.ipynb
-│   └── 03_preprocessing_and_baseline.ipynb
+│   ├── 03_preprocessing_and_baseline.ipynb
+│   └── 04_logistic_regression.ipynb
 ├── results/
-│   └── metrics.csv
+│   ├── metrics.csv
+│   ├── test_probas.csv
+│   └── lr_odds_ratios.csv
 ├── src/
 │   └── prep.py
 ├── requirements.txt
@@ -68,6 +72,7 @@ bank-marketing-term-deposit/
 
 | Stage | Date | What was added |
 | --- | --- | --- |
+| 9. Logistic Regression | 2026-11-01 | `notebooks/04_logistic_regression.ipynb`: class weights, GridSearchCV on C, odds ratios |
 | 8. Preprocessing pipeline & baseline | 2026-11-01 | `src/prep.py` (shared split, preprocessors, metrics) and `notebooks/03_preprocessing_and_baseline.ipynb`: DummyClassifier baseline |
 | 7. Course fit & limitations | 2026-11-01 | `docs/04_course_fit_and_limitations.md`: scope vs the course, limitations, open questions |
 | 6. Preprocessing plan | 2026-11-01 | `docs/03_preprocessing_plan.md`: scaling, transforms, binning, encoding, imbalance handling |
@@ -77,7 +82,7 @@ bank-marketing-term-deposit/
 | 2. Problem statement | 2026-11-01 | `docs/01_problem_statement.md`: business problem, audience, objectives, success metrics |
 | 1. Project setup | 2026-11-01 | Dataset (`data/bank-full.csv`), README, `requirements.txt`, `.gitignore` |
 
-**Next:** Logistic Regression
+**Next:** Tree models
 
 ## How to run
 
